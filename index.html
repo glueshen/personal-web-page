@@ -178,6 +178,10 @@
                 font-size: 24px;
             }
 
+            .menu-toggle.hide {
+                display: none;
+            }
+
             .menu-toggle:focus {
                 outline: none;
             }
@@ -431,7 +435,7 @@
             menuToggleBtn.addEventListener('click', function() {
                 menu.classList.toggle('show');
                 nameTag.classList.toggle('hide');
-                menuToggleBtn.style.display = 'none';
+                menuToggleBtn.classList.toggle('hide');
                 }, false)
 
             for (var i = 0; i < links.length; i++) {
@@ -439,7 +443,7 @@
                     e.preventDefault();
                     menu.classList.remove('show');
                     nameTag.classList.remove('hide');
-                    menuToggleBtn.style.display = 'inline-block';
+                    menuToggleBtn.classList.remove('hide');
                 }, false);
             }
 
