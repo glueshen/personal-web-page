@@ -5,487 +5,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <title>Piotr Glueshen web page</title>
+    <title>Piotr Glueshen's Web Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            color: #fff;
+            overflow: hidden;
         }
 
         header {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.8);
             color: #fff;
             text-align: center;
             padding: 1rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            animation: fadeIn 3s ease-in-out;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
-        }
-
-        h1 {
             text-align: center;
-            color: #c6c6c6;
-        }
-
-        h2 {
-            color: #363636;
+            animation: slideIn 1s ease-in-out;
         }
 
         .summary {
             font-style: italic;
         }
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0;
-        }
-
-        .skills li {
-            background-color: #333;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-
-        .experience {
-            margin-top: 2rem;
-            border-top: 2px solid #333;
-            padding-top: 2rem;
-        }
-
-        .experience h3 {
-            color: #333;
-            margin-bottom: 0;
-        }
-
-        .experience p {
-            margin-top: 0.5rem;
-        }
-
-        .education {
-            margin-top: 2rem;
-            border-top: 2px solid #333;
-            padding-top: 2rem;
-        }
-
-        .education h3 {
-            color: #333;
-            margin-bottom: 0;
-        }
-
-        .education p {
-            margin-top: 0.5rem;
-        }
-
-        .contact {
-            margin-top: 2rem;
-            /* border-top: 2px solid #333; */
-            padding-top: 2rem;
-            text-align: center;
-        }
-
         .contact a {
-            color: #333;
+            color: #fff;
             text-decoration: none;
             margin: 0 1rem;
             font-size: 1.2rem;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
         }
 
         .contact a:hover {
-            color: #007bff;
+            background-color: #007bff;
         }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
+        .contact a:active {
+            transform: scale(0.95);
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
+        .animation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
         }
 
-        .menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .animation-bg div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            animation: float 10s infinite;
+            border-radius: 50%;
         }
 
-        .menu li {
-            display: inline-block;
-            margin-right: 20px;
+        .animation-bg div:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 7s;
+            animation-delay: 1s;
         }
 
-        .menu li:last-child {
-            margin-right: 0;
+        .animation-bg div:nth-child(2) {
+            top: 40%;
+            left: 80%;
+            animation-duration: 10s;
+            animation-delay: 3s;
         }
 
-        .menu a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
+        .animation-bg div:nth-child(3) {
+            top: 70%;
+            left: 50%;
+            animation-duration: 8s;
+            animation-delay: 5s;
         }
 
-        .menu a:hover {
-            color: #007bff;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        .menu-toggle {
-            display: none;
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(45deg);
+            }
         }
 
         @media screen and (max-width: 768px) {
-
-
             header {
-                min-height: 5vh;
+                padding: 0.5rem 0;
             }
 
-            .menu {
-                flex-direction: column;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: none;
-            } 
-
-            .menu.show {
-                display: flex;
+            h1 {
+                font-size: 2rem;
             }
 
-            .menu-toggle {
-                margin: 5px;
-                position: absolute;
-                left: 5px;
-                top: 7px;
-                display: inline-block;
-                cursor: pointer;
-                color: #333;
-                font-size: 24px;
+            .container {
+                padding: 1rem;
             }
 
-            .menu-toggle.hide {
-                display: none;
+            .contact a {
+                font-size: 1rem;
+                margin: 0 0.5rem;
             }
-
-            .menu-toggle:focus {
-                outline: none;
-            }
-
-            #name {
-                margin: 0 0 15px 0;
-                padding: 0 5px 15px 0;
-                position: absolute;
-                right: 5px;
-                top: 5px;
-            }
-
-            #name.hide {
-                display: none;
-            }
-
         }
     </style>
 </head>
 
 <body>
     <header>
-        <button class="menu-toggle" id="menu-toggle-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav>
-            <ul id="menu" class="menu">
-                <li><a href="#home" id="home-link" class="menu-link">Home</a></li>
-                <li><a href="#about" id="about-link" class="menu-link">About</a></li>
-                <li><a href="#resume" id="resume-link" class="menu-link">Resume</a></li>
-                <li><a href="#contact" id="contact-link" class="menu-link">Contact</a></li>
-            </ul>
-        </nav>
-        <h1 id="name">Piotr Glueshen</h1>
+        <h1>Piotr Glueshen</h1>
     </header>
     <div class="container">
-        <div id="about">
-            <h2>About me:</h2>
-            <p>I come from Belarus, a country with a rich cultural heritage and beautiful landscapes. It was where I
-                spent
-                my formative years, attending school and university, which laid the foundation for my passion for
-                learning
-                and exploring.</p>
-
-            <p>Currently, I reside in the USA, a country that has offered me a new chapter in life. I absolutely adore
-                immersing myself in the natural beauty that surrounds me here. Whether it's hiking through serene
-                trails,
-                biking along picturesque routes, or simply strolling amidst nature's wonders, I find solace and joy in
-                every
-                outdoor adventure.</p>
-
-            <p>Besides my love for the outdoors, I have a profound interest in science fiction and the captivating
-                history
-                of our planet. Anthropology fascinates me, as it offers a glimpse into the diverse cultures and
-                societies
-                that have shaped humanity. I also have a keen ear for music and a strong appreciation for good movies
-                that
-                engage both my imagination and emotions.</p>
-
-            <p>Being an open-minded and adaptable person, I find joy in the company of others. Meeting new people,
-                engaging
-                in conversations, and sharing experiences enrich my life. Moreover, family holds a special place in my
-                heart, and I cherish the moments spent with my loved ones.</p>
-
-            <p>Through this web page, I aim to share my experiences, interests, and thoughts with you. It's a space
-                where I
-                hope to connect with like-minded individuals and foster a sense of community. So, come along on this
-                journey
-                as we delve into the wonders of nature, explore fascinating stories from the past and future, discuss
-                thought-provoking topics, and celebrate the joys of being together with family and friends.</p>
-        </div>
-        <div id="resume">
-            <h2> Summary</h2>
-            <p class="summary">Skilled Full Stack Web Developer in a wide range of programming languages, frameworks,
-                and
-                tools. Experienced in developing and maintaining web applications. Strong collaboration and teamwork
-                abilities, delivering high-quality, scalable, and maintainable solutions. Expertise in implementing user
-                authentication, utilizing version control and project management tools. A/B testing and API testing
-                proficiency, improving user engagement and conversion rates. Experienced in system design and
-                architecture,
-                building and maintaining RESTful APIs. Cloud infrastructure knowledge with Azure, Linode, and AWS
-                working
-                across Linux, Windows, and Mac platforms. Successful track record in developing new features, fixing
-                bugs,
-                and improving application functionality. Results-driven and committed to staying up-to-date with
-                industry
-                trends and continuously enhancing skills.</p>
-            <h2>Technical Skills:</h2>
-            <ul class="skills">
-                <!-- ... Existing skills ... -->
-                <li>TypeScript</li>
-                <li>JavaScript</li>
-                <li>PHP</li>
-                <li>Python</li>
-                <li>C#</li>
-                <li>SQL</li>
-                <li>Angular</li>
-                <li>CodeIgniter</li>
-                <li>Laravel</li>
-                <li>.NET MVC</li>
-                <li>LangChain</li>
-                <li>Node.js Express</li>
-                <li>ReactJS</li>
-                <li>RxJS</li>
-                <li>NgRx</li>
-                <li>jQuery</li>
-                <li>Bootstrap</li>
-                <li>CakePHP</li>
-                <li>LINQ</li>
-                <li>Entity Framework</li>
-                <li>MySQL</li>
-                <li>MariaDB</li>
-                <li>Microsoft SQL Server</li>
-                <li>MongoDB</li>
-                <li>Git</li>
-                <li>JIRA</li>
-                <li>Docker</li>
-                <li>Postman</li>
-                <li>Bash</li>
-                <li>Salesforce</li>
-                <li>Linode</li>
-                <li>Azure</li>
-                <li>Linux</li>
-                <li>Windows</li>
-                <li>Mac</li>
-                <li>A/B Testing</li>
-                <li>Unit Testing</li>
-                <li>E2E Testing</li>
-                <li>API Testing</li>
-                <li>System Design</li>
-                <li>SOAP/REST API Development</li>
-            </ul>
-
-            <div class="experience">
-                <!-- ... Existing experience ... -->
-                <h2>Professional Experience:</h2>
-
-                <h3>Full Stack Web Developer, Freerateupdate LLC (November 2021 - Present)</h3>
-                <p>
-                    I've been fortunate to work as a Full Stack Web Developer at Freerateupdate LLC, where I've had the
-                    opportunity to contribute to various exciting projects. One of my primary responsibilities has been
-                    developing and maintaining diverse web applications using a wide range of technologies, including
-                    TypeScript, JavaScript, PHP, Python, SQL, jQuery, RxJS, Laravel, and Node.js.
-                </p>
-                <p>
-                    One of the most challenging and rewarding projects I worked on involved integrating a LangChain
-                    custom
-                    chatbot with Azure OpenAI and Google Dialogflow. This integration required meticulous planning and
-                    collaboration with cross-functional teams, and the end result was a highly efficient and interactive
-                    chatbot for our users.
-                </p>
-                <p>
-                    Security has always been a top priority, and I took the lead in implementing a robust user
-                    authentication and authorization system, ensuring that our users' data remains protected and secure.
-                    I
-                    also made extensive use of Git for version control and JIRA for streamlined project management.
-                </p>
-                <p>
-                    Data-driven decision-making has been a crucial aspect of my work. I actively conducted A/B testing
-                    to
-                    optimize user engagement and conversion rates, leading to valuable insights and continuous
-                    improvements
-                    for our applications.
-                </p>
-                <p>
-                    Contributing to system design and architecture discussions has been an enriching experience, where
-                    my
-                    insights have helped shape scalable and efficient web application development strategies. I've built
-                    and
-                    maintained RESTful APIs using Laravel, allowing seamless integration and data exchange between
-                    frontend
-                    and backend systems. Additionally, my expertise in API testing using Postman has played a vital role
-                    in
-                    delivering reliable APIs.
-                </p>
-                <p>
-                    Handling user tickets promptly has been a significant part of my role, where I've fixed bugs,
-                    enhanced
-                    application features, and implemented regular software updates to ensure optimal user satisfaction.
-                </p>
-                <p>
-                    One of the highlights of my time at Freerateupdate LLC has been designing and implementing new
-                    features
-                    for consumer websites, including innovative components and services that have significantly enriched
-                    user experiences and expanded functionality.
-                </p>
-
-                <h3>Software Developer, MedicalGuardian (March 2020 - November 2021)</h3>
-                <p>
-                    As a Software Developer at MedicalGuardian, I played a key role in developing and maintaining web
-                    applications using a variety of technologies, including PHP, JavaScript, HTML, CSS, .NET, and
-                    Microsoft
-                    SQL Server. One of the most challenging projects I worked on involved contributing to a Magento2
-                    integration project by developing a robust and efficient integration API. This successful
-                    integration
-                    allowed seamless connectivity and data synchronization between systems, significantly enhancing the
-                    user
-                    experience.
-                </p>
-                <p>
-                    I took the lead in designing and building a Customer Appointment Web Application (POC) that
-                    streamlined
-                    the appointment booking process, enabling users to schedule appointments with multiple services
-                    efficiently.
-                </p>
-                <p>
-                    Integration has always been a crucial aspect of our work, and I successfully integrated an
-                    e-commerce
-                    application with the existing MedicalGuardian web application, implementing custom modules that
-                    expanded
-                    the platform's functionality.
-                </p>
-                <p>
-                    Additionally, I developed a comprehensive library of classes tailored for working with e-commerce
-                    REST
-                    APIs, which significantly facilitated seamless data exchange and interaction within the company's
-                    web
-                    application.
-                </p>
-                <p>
-                    My technical expertise also led to the successful integration of Salesforce REST API with the
-                    e-commerce
-                    application. This integration enabled leveraging Salesforce's capabilities to enhance e-commerce
-                    functionalities and streamline business processes.
-                </p>
-                <p>
-                    As part of the role, I also maintained the web content management system (WordPress) to ensure our
-                    customer-facing website remained up-to-date and aligned with our business goals.
-                </p>
-            </div>
-
-            <div class="education">
-                <h2 id="education">Education:</h2>
-                <h3>Master's Degree in Information and Measuring Equipment, Yanka Kupala State University of Grodno,
-                    2010
-                </h3>
-                <h3>Microsoft .NET Developer program, AAIT Technical School, 2019</h3>
-            </div>
-        </div>
-        <div id="contact" class="contact">
-            <h2>Contact:</h2>
+        <p>I am currently a web developer. For more information, visit my <a href="https://www.linkedin.com/in/piotr-glueshen-ab9328193/" target="_blank">LinkedIn</a>.</p>
+        <p class="summary">Page is in development stage.</p>
+        <div class="contact">
             <a href="mailto:ph.netdevelop@gmail.com">Email</a>
             <a href="https://www.linkedin.com/in/piotr-glueshen-ab9328193/" target="_blank">LinkedIn</a>
         </div>
-        <script>
-            const links = document.getElementsByClassName('menu-link')
-            const menuToggleBtn = document.getElementById('menu-toggle-btn');
-            const menu = document.getElementById('menu');
-            const nameTag = document.getElementById('name');
-
-            menuToggleBtn.addEventListener('click', function() {
-                menu.classList.toggle('show');
-                nameTag.classList.toggle('hide');
-                menuToggleBtn.classList.toggle('hide');
-                }, false)
-
-            for (var i = 0; i < links.length; i++) {
-                links[i].addEventListener('click', function(e) {
-                    e.preventDefault();
-                    menu.classList.remove('show');
-                    nameTag.classList.remove('hide');
-                    menuToggleBtn.classList.remove('hide');
-                }, false);
-            }
-
-            const aboutSection = document.getElementById('about');
-            const resumeSection = document.getElementById('resume');
-            const contactSection = document.getElementById('contact');
-
-            const homeLink = document.getElementById('home-link');
-            const aboutLink = document.getElementById('about-link');
-            const resumeLink = document.getElementById('resume-link');
-            const contactLink = document.getElementById('contact-link');
-
-            function showSection(sectionToShow) {
-                aboutSection.style.display = 'none';
-                resumeSection.style.display = 'none';
-                contactSection.style.display = 'none';
-
-                sectionToShow.style.display = 'block';
-            }
-
-
-            homeLink.addEventListener('click', () => {
-                showSection(aboutSection);
-            });
-
-            aboutLink.addEventListener('click', () => {
-                showSection(aboutSection);
-            });
-
-            resumeLink.addEventListener('click', () => {
-                showSection(resumeSection);
-            });
-
-            contactLink.addEventListener('click', () => {
-                showSection(contactSection);
-            });
-
-            // On page load, show the "About" section (Home) by default
-            window.onload = () => {
-                showSection(aboutSection);
-            };
-        </script>
+    </div>
+    <div class="animation-bg">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </body>
 
 </html>
